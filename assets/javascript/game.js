@@ -1,6 +1,7 @@
 // global Pokemon team arrays
 let myTeam = [];
 let rivalTeam = [];
+let game = true;
 
 // make a Pokemon object w/ a constructor function
 function Pokemon(name, hp, weak, strong) {
@@ -60,6 +61,14 @@ function accuracy(pkmn, move) {
     }
 }
 
+function checkFeint(pkmn) {
+    if (pkmn.hp <= 0) {
+        pkmn.status = "feint";
+        alert(`${pkmn.name} has feinted.`);
+        return true;
+    }
+}
+
 // ========== MAIN CODE STARTS HERE ==========
 
 // Initialize
@@ -70,9 +79,9 @@ myTeam.push(new Pokemon("Venusaur", 100, ["Weak Atk", 10, 9], ["Strong Atk", 15,
 // console.log(myTeam);
 
 // make the pokemon for the rival team
-rivalTeam.push(new Pokemon("Raichu", 100, ["Weak Atk", 10, 9], ["Strong Atk", 15, 6.5]));
-rivalTeam.push(new Pokemon("Umbreon", 100, ["Weak Atk", 10, 9], ["Strong Atk", 15, 6.5]));
-rivalTeam.push(new Pokemon("Lugia", 100, ["Weak Atk", 10, 9], ["Strong Atk", 15, 6.5]));
+rivalTeam.push(new Pokemon("Raichu", 00, ["Weak Atk", 10, 9], ["Strong Atk", 15, 6.5]));
+rivalTeam.push(new Pokemon("Umbreon", 00, ["Weak Atk", 10, 9], ["Strong Atk", 15, 6.5]));
+rivalTeam.push(new Pokemon("Lugia", 00, ["Weak Atk", 10, 9], ["Strong Atk", 15, 6.5]));
 // console.log(rivalTeam);
 
 // choose the Pokemon you want to use and computer chooses it's Pokemon
@@ -84,5 +93,21 @@ console.log(`Rival chooses: ${rivalTeam[rivalChoice].name}`);
 
 // FIGHTING (loop until there is a feint)
 fight(myTeam[choice], rivalTeam[rivalChoice]);
-// checkFeint(myTeam[choice], rivalTeam[rivalChoice]);
+if (checkFeint(myTeam[choice])) {
+    // hide the feinted pokemon's element
+    choice = prompt(`Choose your Pokemon:\n0) ${myTeam[0].name}\n1) ${myTeam[1].name}\n2) ${myTeam[2].name}`);
+    alert(`Player sent out ${myTeam[choice].name}.`);
+}
+if (checkFeint(rivalTeam[rivalChoice])) {
+    let finished = false;
+    while (finished === false) {
+        let randNum = Math.floor(Math.random() * 3);
+        if (rivalTeam[randNum].status === "OK") {
+            rivalChoice = randNum;
+            alert(`Rival sent out ${rivalTeam[rivalChoice].name}.`);
+            finished = true;
+        }
+    }
+}
 // checkWin();
+// game = false ==> reset game
