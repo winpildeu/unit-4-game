@@ -21,7 +21,7 @@ function Pokemon(name, hp, weak, strong) {
     ];
 }
 
-// Fighting logic
+// fighting logic
 function fight(myPokemon, rivalPokemon) {
     let myMove;
     let rivalMove;
@@ -45,13 +45,14 @@ function fight(myPokemon, rivalPokemon) {
     rivalPokemon.hp -= dmg1;
     myPokemon.hp -= dmg2;
 
-    // the player's Pokemon gets stronger
+    // the player's Pokemon gets stronger after every move attempt
     myPokemon.moves[myMove].str += 2;
 
     console.log(`My Pokemon's HP: ${myPokemon.hp}`);
     console.log(`Rival Pokemon's HP: ${rivalPokemon.hp}`);
 }
 
+// check if the move actually hits the other pokemon
 function accuracy(pkmn, move) {
     let randNum = (Math.random() * 10);
 
@@ -64,6 +65,7 @@ function accuracy(pkmn, move) {
     }
 }
 
+// checks the pokemon's HP to see if it has fainted
 function checkFaint(pkmn) {
     if (pkmn.hp <= 0) {
         pkmn.status = "faint";

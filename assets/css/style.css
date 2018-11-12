@@ -1,0 +1,43 @@
+/* Element styles */
+html {
+    font-size: 40px;
+    font-family: 'VT323', monospace;
+}
+header {
+    height: 4rem;
+    background-color: red;
+    border-bottom: 1rem solid black;
+}
+
+/* Class styles */
+.pokePics {
+    padding:10px;
+    border: 0.2rem solid black;
+}
+
+/* ID styles */
+#logo {
+    width: 600px;
+    margin: 0px auto;
+}
+
+#battle {
+    margin-top: 2rem;
+    border-radius: 50%;
+}
+
+#pokemonSelect {
+    padding: 1rem;
+    padding-bottom: 0rem;
+    border-radius: 3%;
+}
+
+#infoBox {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-image: url("../images/tiny_grid.png");
+    background-repeat: repeat;
+    padding: 1rem;
+    border: 0.5rem double black;
+    height: 6rem;
+}
