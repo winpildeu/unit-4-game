@@ -47,6 +47,13 @@ header {
     display: none;
 }
 
+#fightBox {
+    padding: 0rem auto;
+    display: none;
+    background: black url("../images/field.png") no-repeat scroll 50% 50%;
+    height: 382px;
+}
+
 #infoBox {
     margin-top: 1rem;
     margin-bottom: 1rem;

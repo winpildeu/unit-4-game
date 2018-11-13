@@ -156,6 +156,7 @@ $(document).ready(function () {
         console.log(`Rival chooses: ${rivalTeam[rivalChoice].name}`);
         $("#info").html(` You selected ${myTeam[choice].name}.`);
         $("#pokemonSelect").hide(1000);
+        $("#fightBox").show(1000);
     });
     $("#c").click(function () {
         choice = 1;
@@ -163,6 +164,7 @@ $(document).ready(function () {
         console.log(`Rival chooses: ${rivalTeam[rivalChoice].name}`);
         $("#info").html(` You selected ${myTeam[choice].name}.`);
         $("#pokemonSelect").hide(1000);
+        $("#fightBox").show(1000);
     });
     $("#b").click(function () {
         choice = 2;
@@ -170,5 +172,7 @@ $(document).ready(function () {
         console.log(`Rival chooses: ${rivalTeam[rivalChoice].name}`);
         $("#info").html(` You selected ${myTeam[choice].name}.`);
         $("#pokemonSelect").hide(1000);
+        $("#fightBox").show(1000);
     });
+
 });
