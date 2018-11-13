@@ -2,6 +2,8 @@
 let myTeam = [];
 let rivalTeam = [];
 let game = true;
+let choice;
+let rivalChoice = Math.floor(Math.random() * 3);
 
 // make a Pokemon object w/ a constructor function
 function Pokemon(name, hp, weak, strong) {
@@ -78,9 +80,9 @@ function checkFaint(pkmn) {
 
 // Initialize
 // make the pokemon for my team
-myTeam.push(new Pokemon("Blastoise", 79, ["Weak Atk", 8, 9], ["Strong Atk", 13, 6.5]));
-myTeam.push(new Pokemon("Charizard", 78, ["Weak Atk", 8, 9], ["Strong Atk", 13, 6.5]));
 myTeam.push(new Pokemon("Venusaur", 80, ["Weak Atk", 8, 9], ["Strong Atk", 13, 6.5]));
+myTeam.push(new Pokemon("Charizard", 78, ["Weak Atk", 8, 9], ["Strong Atk", 13, 6.5]));
+myTeam.push(new Pokemon("Blastoise", 79, ["Weak Atk", 8, 9], ["Strong Atk", 13, 6.5]));
 // console.log(myTeam);
 
 // make the pokemon for the rival team
@@ -89,44 +91,84 @@ rivalTeam.push(new Pokemon("Espeon", 65, ["Weak Atk", 6, 9], ["Strong Atk", 11, 
 rivalTeam.push(new Pokemon("Lugia", 106, ["Weak Atk", 9, 9], ["Strong Atk", 14, 6.5]));
 // console.log(rivalTeam);
 
-// choose the Pokemon you want to use and computer chooses it's Pokemon
-let rivalChoice = Math.floor(Math.random() * 3);
-let choice = prompt(`Choose your Pokemon:\n0) ${myTeam[0].name}\n1) ${myTeam[1].name}\n2) ${myTeam[2].name}`);
+// // FIGHTING (loop until there is a faint)
+// do {
+//     fight(myTeam[choice], rivalTeam[rivalChoice]);
+//     if (checkFaint(myTeam[choice])) {
+//         // hide the fainted pokemon's element
+//         if (myTeam.every(obj => obj.status == "faint")) {
+//             // end game and reset
+//             game = false;
+//             alert(`Your Pokemon team loses...`);
+//         } else {
+//             choice = prompt(`Choose your Pokemon:\n0) ${myTeam[0].name}\n1) ${myTeam[1].name}\n2) ${myTeam[2].name}`);
+//             alert(`Player sent out ${myTeam[choice].name}.`);
+//         }
+//     }
+//     if (checkFaint(rivalTeam[rivalChoice])) {
+//         if (rivalTeam.every(obj => obj.status == "faint")) {
+//             // end game and reset
+//             game = false;
+//             alert(`Your Pokemon team wins!`);
 
-console.log(`Player chooses: ${myTeam[choice].name}`);
-console.log(`Rival chooses: ${rivalTeam[rivalChoice].name}`);
+//         } else {
+//             let finished = false;
+//             while (finished === false) {
+//                 let randNum = Math.floor(Math.random() * 3);
+//                 if (rivalTeam[randNum].status === "OK") {
+//                     rivalChoice = randNum;
+//                     alert(`Rival sent out ${rivalTeam[rivalChoice].name}.`);
+//                     finished = true;
+//                 }
+//             }
+//         }
 
-// FIGHTING (loop until there is a faint)
-do {
-    fight(myTeam[choice], rivalTeam[rivalChoice]);
-    if (checkFaint(myTeam[choice])) {
-        // hide the fainted pokemon's element
-        if (myTeam.every(obj => obj.status == "faint")) {
-            // end game and reset
-            game = false;
-            alert(`Your Pokemon team loses...`);
-        } else {
-            choice = prompt(`Choose your Pokemon:\n0) ${myTeam[0].name}\n1) ${myTeam[1].name}\n2) ${myTeam[2].name}`);
-            alert(`Player sent out ${myTeam[choice].name}.`);
-        }
-    }
-    if (checkFaint(rivalTeam[rivalChoice])) {
-        if (rivalTeam.every(obj => obj.status == "faint")) {
-            // end game and reset
-            game = false;
-            alert(`Your Pokemon team wins!`);
+//     }
+// } while (game === true);
 
-        } else {
-            let finished = false;
-            while (finished === false) {
-                let randNum = Math.floor(Math.random() * 3);
-                if (rivalTeam[randNum].status === "OK") {
-                    rivalChoice = randNum;
-                    alert(`Rival sent out ${rivalTeam[rivalChoice].name}.`);
-                    finished = true;
-                }
-            }
-        }
+// jQuery stuff
+$(document).ready(function () {
 
-    }
-} while (game === true);
+    // show the pokemon selection screen
+    $("#pokemonSelect").show(1000);
+
+    // click to see info about the pokemon
+    $("#v").mouseover(function () {
+        $("#info").html(`${myTeam[0].name}: HP: ${myTeam[0].hp}`);
+        $("#v").css("border-color", "red");
+    });
+    $("#c").mouseover(function () {
+        $("#info").html(`${myTeam[1].name}: HP: ${myTeam[1].hp}`);
+        $("#c").css("border-color", "red");
+    });
+    $("#b").mouseover(function () {
+        $("#info").html(`${myTeam[2].name}: HP: ${myTeam[2].hp}`);
+        $("#b").css("border-color", "red");
+    });
+    $(".pokePics").mouseleave(function () {
+        $(this).css("border-color", "black");
+    });
+
+    // selecting pokemon and hiding the character select
+    $("#v").click(function () {
+        choice = 0;
+        console.log(`Player chooses: ${myTeam[choice].name}`);
+        console.log(`Rival chooses: ${rivalTeam[rivalChoice].name}`);
+        $("#info").html(` You selected ${myTeam[choice].name}.`);
+        $("#pokemonSelect").hide(1000);
+    });
+    $("#c").click(function () {
+        choice = 1;
+        console.log(`Player chooses: ${myTeam[choice].name}`);
+        console.log(`Rival chooses: ${rivalTeam[rivalChoice].name}`);
+        $("#info").html(` You selected ${myTeam[choice].name}.`);
+        $("#pokemonSelect").hide(1000);
+    });
+    $("#b").click(function () {
+        choice = 2;
+        console.log(`Player chooses: ${myTeam[choice].name}`);
+        console.log(`Rival chooses: ${rivalTeam[rivalChoice].name}`);
+        $("#info").html(` You selected ${myTeam[choice].name}.`);
+        $("#pokemonSelect").hide(1000);
+    });
+});

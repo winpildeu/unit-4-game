@@ -3,6 +3,18 @@ html {
     font-size: 40px;
     font-family: 'VT323', monospace;
 }
+/* h1 {
+    font-size: 120px;
+}
+h2 {
+    font-size: 100px;
+}
+h3 {
+    font-size: 80px;
+}
+h4 {
+    font-size: 60px;
+} */
 header {
     height: 4rem;
     background-color: red;
@@ -15,6 +27,10 @@ header {
     border: 0.2rem solid black;
 }
 
+.card, .pokePics {
+    border-radius: 50% !important;
+}
+
 /* ID styles */
 #logo {
     width: 600px;
@@ -22,14 +38,13 @@ header {
 }
 
 #battle {
-    margin-top: 2rem;
+    margin-top: 1rem;
     border-radius: 50%;
 }
 
 #pokemonSelect {
-    padding: 1rem;
-    padding-bottom: 0rem;
-    border-radius: 3%;
+    padding: 0rem auto;
+    display: none;
 }
 
 #infoBox {
@@ -39,5 +54,5 @@ header {
     background-repeat: repeat;
     padding: 1rem;
     border: 0.5rem double black;
-    height: 6rem;
+    height: 4rem;
 }
