@@ -83,9 +83,10 @@ function chooseRivalPokemon() {
         $("#esp").css("display", "inline");
     } else {
         $("#lug").css("display", "inline");
-
     }
+    $("#rivalHp").html(`<p>${rivalTeam[rivalChoice].hp}</p>`);
 
+    // $("#info").html(`Rival selected ${rivalTeam[rivalChoice].name}.`);
 }
 // ========== MAIN CODE STARTS HERE ==========
 
@@ -160,32 +161,46 @@ $(document).ready(function () {
         $(this).css("border-color", "black");
     });
 
-    // selecting pokemon and hiding the character select
+    // selecting pokemon
     $("#v").click(function () {
         choice = 0;
         $("#info").html(` You selected ${myTeam[choice].name}.`);
-        $("#battle").hide(1000);
+        setTimeout(function () {
+            $("#info").hide();
+        }, 1000);
+        // $("#battle").hide(1000);
         $("#pokemonSelect").hide(1000);
         $("#ven").css("display", "inline");
         chooseRivalPokemon();
         $("#fightBox").show(1000);
-
+        $("#myHp").html(`<p>${myTeam[choice].hp}</p>`);
     });
     $("#c").click(function () {
         choice = 1;
         $("#info").html(` You selected ${myTeam[choice].name}.`);
+        setTimeout(function () {
+            $("#info").hide();
+        }, 1000);
+        $("#battle").hide(1000);
         $("#pokemonSelect").hide(1000);
         $("#cha").css("display", "inline");
         chooseRivalPokemon();
         $("#fightBox").show(1000);
+        $("#myHp").html(`<p>${myTeam[choice].hp}</p>`);
+
     });
     $("#b").click(function () {
         choice = 2;
         $("#info").html(` You selected ${myTeam[choice].name}.`);
+        setTimeout(function () {
+            $("#info").hide();
+        }, 1000);
+        $("#battle").hide(1000);
         $("#pokemonSelect").hide(1000);
         $("#bla").css("display", "inline");
         chooseRivalPokemon();
         $("#fightBox").show(1000);
+        $("#myHp").html(`<p>${myTeam[choice].hp}</p>`);
     });
 
 });
