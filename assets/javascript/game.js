@@ -3,7 +3,6 @@ let myTeam = [];
 let rivalTeam = [];
 let game = true;
 let choice;
-let rivalChoice = Math.floor(Math.random() * 3);
 
 // make a Pokemon object w/ a constructor function
 function Pokemon(name, hp, weak, strong) {
@@ -76,6 +75,18 @@ function checkFaint(pkmn) {
     }
 }
 
+function chooseRivalPokemon() {
+    let rivalChoice = Math.floor(Math.random() * 3);
+    if (rivalChoice == 0) {
+        $("#rai").css("display", "inline");
+    } else if (rivalChoice == 1) {
+        $("#esp").css("display", "inline");
+    } else {
+        $("#lug").css("display", "inline");
+
+    }
+
+}
 // ========== MAIN CODE STARTS HERE ==========
 
 // Initialize
@@ -152,30 +163,28 @@ $(document).ready(function () {
     // selecting pokemon and hiding the character select
     $("#v").click(function () {
         choice = 0;
-        console.log(`Player chooses: ${myTeam[choice].name}`);
-        console.log(`Rival chooses: ${rivalTeam[rivalChoice].name}`);
         $("#info").html(` You selected ${myTeam[choice].name}.`);
         $("#battle").hide(1000);
         $("#pokemonSelect").hide(1000);
         $("#ven").css("display", "inline");
+        chooseRivalPokemon();
         $("#fightBox").show(1000);
+
     });
     $("#c").click(function () {
         choice = 1;
-        console.log(`Player chooses: ${myTeam[choice].name}`);
-        console.log(`Rival chooses: ${rivalTeam[rivalChoice].name}`);
         $("#info").html(` You selected ${myTeam[choice].name}.`);
         $("#pokemonSelect").hide(1000);
         $("#cha").css("display", "inline");
+        chooseRivalPokemon();
         $("#fightBox").show(1000);
     });
     $("#b").click(function () {
         choice = 2;
-        console.log(`Player chooses: ${myTeam[choice].name}`);
-        console.log(`Rival chooses: ${rivalTeam[rivalChoice].name}`);
         $("#info").html(` You selected ${myTeam[choice].name}.`);
         $("#pokemonSelect").hide(1000);
         $("#bla").css("display", "inline");
+        chooseRivalPokemon();
         $("#fightBox").show(1000);
     });
 

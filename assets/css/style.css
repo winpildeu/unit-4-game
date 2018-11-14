@@ -3,18 +3,7 @@ html {
     font-size: 40px;
     font-family: 'VT323', monospace;
 }
-/* h1 {
-    font-size: 120px;
-}
-h2 {
-    font-size: 100px;
-}
-h3 {
-    font-size: 80px;
-}
-h4 {
-    font-size: 60px;
-} */
+
 header {
     height: 4rem;
     background-color: red;
@@ -60,6 +49,19 @@ header {
     height: 382px;
 }
 
+#backHp {
+    background-color: white;
+    padding: 0.2rem;
+    border: 2px dotted black;
+    border-radius: 5px;
+}
+
+#frontHp {
+    background-color: white;
+    padding: 0.2rem;
+    border: 2px dotted black;
+    border-radius: 5px;
+}
 #infoBox {
     margin-top: 1rem;
     margin-bottom: 1rem;
