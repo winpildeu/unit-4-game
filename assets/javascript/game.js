@@ -9,7 +9,7 @@ let rivalChoice;
 function Pokemon(name, hp, weak, strong) {
     this.name = name;
     this.hp = hp;
-    this.status = "OK";
+    this.status = true;
     this.moves = [{
             atkName: weak[0],
             str: weak[1],
@@ -64,28 +64,50 @@ function checkFaint(myPokemon, rivalPokemon) {
         // reset the game
     }
     if (rivalPokemon.hp <= 0) {
-        rivalPokemon.status = "faint";
-        alert("Rival pokemon fainted.");
+        hideRivalPokemon();
+        rivalPokemon.status = false;
+        if (rivalTeam.every(obj => obj.status === false)) {
+            alert("You won the game!");
+        } else {
+            chooseRivalPokemon();
+        }
     }
 }
 
 function chooseRivalPokemon() {
-    rivalChoice = Math.floor(Math.random() * 3);
-    if (rivalChoice == 0) {
-        $("#rai").css("display", "inline");
-    } else if (rivalChoice == 1) {
-        $("#esp").css("display", "inline");
-    } else {
-        $("#lug").css("display", "inline");
-    }
+    let stop = false;
+    do {
+        rivalChoice = Math.floor(Math.random() * 3);
+        if (rivalChoice === 0 && rivalTeam[rivalChoice].status === true) {
+            $("#rai").css("display", "inline");
+            stop = true;
+        } else if (rivalChoice === 1  && rivalTeam[rivalChoice].status === true) {
+            $("#esp").css("display", "inline");
+            stop = true;
+        } else if (rivalChoice === 2 && rivalTeam[rivalChoice].status === true) {
+            $("#lug").css("display", "inline");
+            stop = true;
+        }
+    } while (stop === false);
+
+    alert(`Rival sent out: ${rivalTeam[rivalChoice].name}`);
     $("#rivalHp").html(`<p>${rivalTeam[rivalChoice].hp}</p>`);
 }
 
+function hideRivalPokemon() {
+    if (rivalChoice === 0) {
+        $("#rai").css("display", "none");
+    } else if (rivalChoice === 1) {
+        $("#esp").css("display", "none");
+    } else if (rivalChoice === 2) {
+        $("#lug").css("display", "none");
+    }
+    $("#rivalHp").html();
+}
+
 function hideSelectScreen(num) {
-    $("#info").html(` You selected ${myTeam[num].name}.`);
-    setTimeout(function () {
-        $("#info").hide();
-    }, 1000);
+    // $("#info").html(` You selected ${myTeam[num].name}.`);
+    $("#info").hide(1000);
     $("#battle").hide(1000);
     $("#pokemonSelect").hide(1000);
 }
@@ -95,51 +117,15 @@ function showFightScreen() {
 }
 // ========== MAIN CODE STARTS HERE ==========
 
-// Initialize
 // make the pokemon for my team
 myTeam.push(new Pokemon("Venusaur", 80, ["Weak Atk", 8, 9], ["Strong Atk", 13, 6.5]));
 myTeam.push(new Pokemon("Charizard", 78, ["Weak Atk", 8, 9], ["Strong Atk", 13, 6.5]));
 myTeam.push(new Pokemon("Blastoise", 79, ["Weak Atk", 8, 9], ["Strong Atk", 13, 6.5]));
 
 // make the pokemon for the rival team
-rivalTeam.push(new Pokemon("Raichu", 60, ["Weak Atk", 9, 9], ["Strong Atk", 14, 6.5]));
-rivalTeam.push(new Pokemon("Espeon", 65, ["Weak Atk", 6, 9], ["Strong Atk", 11, 6.5]));
-rivalTeam.push(new Pokemon("Lugia", 106, ["Weak Atk", 9, 9], ["Strong Atk", 14, 6.5]));
-
-// // FIGHTING (loop until there is a faint)
-// do {
-//     fight(myTeam[choice], rivalTeam[rivalChoice]);
-//     if (checkFaint(myTeam[choice])) {
-//         // hide the fainted pokemon's element
-//         if (myTeam.every(obj => obj.status == "faint")) {
-//             // end game and reset
-//             game = false;
-//             alert(`Your Pokemon team loses...`);
-//         } else {
-//             choice = prompt(`Choose your Pokemon:\n0) ${myTeam[0].name}\n1) ${myTeam[1].name}\n2) ${myTeam[2].name}`);
-//             alert(`Player sent out ${myTeam[choice].name}.`);
-//         }
-//     }
-//     if (checkFaint(rivalTeam[rivalChoice])) {
-//         if (rivalTeam.every(obj => obj.status == "faint")) {
-//             // end game and reset
-//             game = false;
-//             alert(`Your Pokemon team wins!`);
-
-//         } else {
-//             let finished = false;
-//             while (finished === false) {
-//                 let randNum = Math.floor(Math.random() * 3);
-//                 if (rivalTeam[randNum].status === "OK") {
-//                     rivalChoice = randNum;
-//                     alert(`Rival sent out ${rivalTeam[rivalChoice].name}.`);
-//                     finished = true;
-//                 }
-//             }
-//         }
-
-//     }
-// } while (game === true);
+rivalTeam.push(new Pokemon("Raichu", 60, ["Weak Atk", 5, 9], ["Strong Atk", 10, 6.5]));
+rivalTeam.push(new Pokemon("Espeon", 65, ["Weak Atk", 5, 9], ["Strong Atk", 10, 6.5]));
+rivalTeam.push(new Pokemon("Lugia", 106, ["Weak Atk", 5, 9], ["Strong Atk", 10, 6.5]));
 
 // jQuery stuff
 $(document).ready(function () {
@@ -173,7 +159,7 @@ $(document).ready(function () {
         chooseRivalPokemon();
         $("#fightBox").show(1000);
         $("#myHp").html(`<p>${myTeam[choice].hp}</p>`);
-        $("#atkButtons").show(2000);
+        $("#atkButtons").show(1000);
     });
     $("#c").click(function () {
         choice = 1;
@@ -183,7 +169,7 @@ $(document).ready(function () {
         chooseRivalPokemon();
         $("#fightBox").show(1000);
         $("#myHp").html(`<p>${myTeam[choice].hp}</p>`);
-        $("#atkButtons").show(2000);
+        $("#atkButtons").show(1000);
     });
     $("#b").click(function () {
         choice = 2;
@@ -193,7 +179,7 @@ $(document).ready(function () {
         chooseRivalPokemon();
         $("#fightBox").show(1000);
         $("#myHp").html(`<p>${myTeam[choice].hp}</p>`);
-        $("#atkButtons").show(2000);
+        $("#atkButtons").show(1000);
     });
 
     // Attack and fighting events
