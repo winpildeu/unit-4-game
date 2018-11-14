@@ -1,7 +1,6 @@
 // global Pokemon team arrays
 let myTeam = [];
 let rivalTeam = [];
-let game = true;
 let choice;
 let rivalChoice;
 
@@ -59,9 +58,8 @@ function accuracy(pkmn, move) {
 
 // checks the pokemon's HP to see if it has fainted
 function checkFaint(myPokemon, rivalPokemon) {
-    if(myPokemon.hp <= 0) {
+    if (myPokemon.hp <= 0) {
         alert("You lose...");
-        // reset the game
     }
     if (rivalPokemon.hp <= 0) {
         hideRivalPokemon();
@@ -81,7 +79,7 @@ function chooseRivalPokemon() {
         if (rivalChoice === 0 && rivalTeam[rivalChoice].status === true) {
             $("#rai").css("display", "inline");
             stop = true;
-        } else if (rivalChoice === 1  && rivalTeam[rivalChoice].status === true) {
+        } else if (rivalChoice === 1 && rivalTeam[rivalChoice].status === true) {
             $("#esp").css("display", "inline");
             stop = true;
         } else if (rivalChoice === 2 && rivalTeam[rivalChoice].status === true) {
@@ -112,26 +110,25 @@ function hideSelectScreen(num) {
     $("#pokemonSelect").hide(1000);
 }
 
-function showFightScreen() {
+function initialize() {
+    // make the pokemon for my team
+    myTeam.push(new Pokemon("Venusaur", 80, ["Weak Atk", 8, 9], ["Strong Atk", 13, 6.5]));
+    myTeam.push(new Pokemon("Charizard", 78, ["Weak Atk", 8, 9], ["Strong Atk", 13, 6.5]));
+    myTeam.push(new Pokemon("Blastoise", 79, ["Weak Atk", 8, 9], ["Strong Atk", 13, 6.5]));
 
+    // make the pokemon for the rival team
+    rivalTeam.push(new Pokemon("Raichu", 60, ["Weak Atk", 5, 9], ["Strong Atk", 10, 6.5]));
+    rivalTeam.push(new Pokemon("Espeon", 65, ["Weak Atk", 5, 9], ["Strong Atk", 10, 6.5]));
+    rivalTeam.push(new Pokemon("Lugia", 106, ["Weak Atk", 5, 9], ["Strong Atk", 10, 6.5]));
+    $("#pokemonSelect").show(1000);
 }
 // ========== MAIN CODE STARTS HERE ==========
-
-// make the pokemon for my team
-myTeam.push(new Pokemon("Venusaur", 80, ["Weak Atk", 8, 9], ["Strong Atk", 13, 6.5]));
-myTeam.push(new Pokemon("Charizard", 78, ["Weak Atk", 8, 9], ["Strong Atk", 13, 6.5]));
-myTeam.push(new Pokemon("Blastoise", 79, ["Weak Atk", 8, 9], ["Strong Atk", 13, 6.5]));
-
-// make the pokemon for the rival team
-rivalTeam.push(new Pokemon("Raichu", 60, ["Weak Atk", 5, 9], ["Strong Atk", 10, 6.5]));
-rivalTeam.push(new Pokemon("Espeon", 65, ["Weak Atk", 5, 9], ["Strong Atk", 10, 6.5]));
-rivalTeam.push(new Pokemon("Lugia", 106, ["Weak Atk", 5, 9], ["Strong Atk", 10, 6.5]));
 
 // jQuery stuff
 $(document).ready(function () {
 
     // show the pokemon selection screen
-    $("#pokemonSelect").show(1000);
+    initialize();
 
     // click to see info about the pokemon
     $("#v").mouseover(function () {
@@ -183,11 +180,11 @@ $(document).ready(function () {
     });
 
     // Attack and fighting events
-    $("#quickAtk").click(function() {
+    $("#quickAtk").click(function () {
         fight(myTeam[choice], rivalTeam[rivalChoice], 0);
         checkFaint(myTeam[choice], rivalTeam[rivalChoice]);
     });
-    $("#strongAtk").click(function() {
+    $("#strongAtk").click(function () {
         fight(myTeam[choice], rivalTeam[rivalChoice], 1);
         checkFaint(myTeam[choice], rivalTeam[rivalChoice]);
     });
