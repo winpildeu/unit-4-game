@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Materialize Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Personal CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
@@ -32,7 +34,6 @@
     <!-- This is where the pokemon are displayed and chosen -->
     <div id="pokemonSelect" class="container amber accent-3 z-depth-2">
         <p class="center">Click to select.</p>
-
         <!-- choose your pokemon screen -->
         <div class="row">
             <div class="col s12 m4">
@@ -66,7 +67,7 @@
             <div class="col m-3 offset-m2">
                 <div id="backHp">
                     <p>Rival HP:</p>
-                    <div id="rivalHp" class="hpNum">--</div>
+                    <div id="rivalHp">--</div>
                 </div>
             </div>
             <div class="col">
@@ -89,7 +90,7 @@
             <div class="col offset-m2">
                 <div id="frontHp">
                     <p>My HP:</p>
-                    <div id="myHp" class="hpNum">--</div>
+                    <div id="myHp">--</div>
                 </div>
             </div>
         </div>
@@ -98,6 +99,10 @@
     <!-- Upon hover of the pokemon, show the pokemon's info -->
     <div id="infoBox" class="container z-depth-2">
         <div id="info"></div>
+        <div id="atkButtons" class="center">
+                <a id="quickAtk" class="waves-effect waves-light btn-large light-blue"><i class="material-icons left">flash_on</i>Quick Atk.</a>
+                <a id="strongAtk" class="waves-effect waves-light btn-large red"><i class="material-icons right">fitness_center</i>Strong Atk.</a>
+        </div>
     </div>
 
     <!-- Compiled and minified JavaScript -->

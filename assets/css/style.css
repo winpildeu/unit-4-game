@@ -71,3 +71,7 @@ header {
     border: 0.5rem double black;
     height: 4rem;
 }
+
+#atkButtons {
+    display: none;
+}
