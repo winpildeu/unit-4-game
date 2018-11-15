@@ -44,14 +44,12 @@ function fight(myPokemon, rivalPokemon, myMove) {
 }
 
 // check if the move actually hits the other pokemon
-function accuracy(pkmn, move) {
+function accuracy(move) {
     let randNum = (Math.random() * 10);
-
+    // if the random number is less than the accuracy, the move hits
     if (randNum <= move.acc) {
-        // alert(`${pkmn} hit for ${move.str} damage!`);
         return move.str;
     } else {
-        // alert(`${pkmn} missed!`);
         return 0;
     }
 }
