@@ -31,8 +31,8 @@ function fight(myPokemon, rivalPokemon, myMove) {
     // console.log(`Rival move: ${rivalPokemon.moves[rivalMove].atkName}`);
 
     // check for hit and deal damage
-    let dmg1 = accuracy(myPokemon.name, myPokemon.moves[myMove]);
-    let dmg2 = accuracy(rivalPokemon.name, rivalPokemon.moves[rivalMove]);
+    let dmg1 = accuracy(myPokemon.moves[myMove]);
+    let dmg2 = accuracy(rivalPokemon.moves[rivalMove]);
     rivalPokemon.hp -= dmg1;
     myPokemon.hp -= dmg2;
 
