@@ -1,5 +1,6 @@
 # unit-4-game
 This is a Pokemon battle turn-based RPG game made using JS and J.query.
+URL: https://winpildeu.github.io/unit-4-game/
 
 1. On this screen, you choose the pokemon that you want to use. When you hover over the character, it shows the HP of that pokemon.
 
